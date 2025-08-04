@@ -1,4 +1,5 @@
 
+
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
@@ -12,7 +13,7 @@ body {
   padding: 1rem 0;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -23,20 +24,61 @@ body {
   font-weight: 500;
   font-size: 1.1rem;
   transition: color 0.2s;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.4rem;
 }
 .navbar a:hover {
-  color: #66a6ff;
+  color: #fff;
+  background: #66a6ff;
 }
 
-.main-content {
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  margin-top: 3rem;
+}
+.hero-section h1 {
+  font-size: 2.5rem;
+  color: #2d3a4b;
+  margin-bottom: 0.7rem;
+}
+.subtitle {
+  color: #4f5b62;
+  font-size: 1.2rem;
+  margin-bottom: 2.2rem;
+}
+.hero-actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.hero-btn {
+  padding: 0.8rem 2.2rem;
+  background: #66a6ff;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(31, 38, 135, 0.08);
+  transition: background 0.2s, color 0.2s;
+}
+.hero-btn.secondary {
   background: #fff;
-  padding: 2.5rem 2rem;
-  border-radius: 1.2rem;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-  text-align: center;
-  min-width: 320px;
-  max-width: 350px;
-  margin: 3rem auto 0 auto;
+  color: #66a6ff;
+  border: 1.5px solid #66a6ff;
+}
+.hero-btn:hover {
+  background: #89f7fe;
+  color: #2d3a4b;
+}
+.hero-btn.secondary:hover {
+  background: #66a6ff;
+  color: #fff;
 }
 
 h1, h2 {
@@ -44,10 +86,26 @@ h1, h2 {
   margin-bottom: 1.2rem;
 }
 
+
+.form-container {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  text-align: center;
+  min-width: 320px;
+  max-width: 350px;
+  margin: 4rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
   margin-bottom: 1rem;
 }
 
@@ -97,4 +155,5 @@ a:hover {
   margin-top: 2rem;
   color: #b0bec5;
   font-size: 0.95rem;
+  text-align: center;
 }
