@@ -11,5 +11,13 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   });
 
   const data = await res.json();
-  alert(data.message || 'Registered');
+  const msg = document.getElementById('registerMessage');
+  if (res.ok) {
+    msg.style.color = '#43a047';
+    msg.textContent = 'Registration successful! Redirecting...';
+    setTimeout(() => window.location.href = '/home', 1000);
+  } else {
+    msg.style.color = '#e53935';
+    msg.textContent = data.message || 'Registration failed.';
+  }
 });

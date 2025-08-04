@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -34,6 +35,18 @@ const loginUser = async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
+  const token = jwt.sign(
+    { id: user._id },
+    process.env.JWT_SECRET,
+    { expiresIn: '1d' }
+  );
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: false, // Set to true in production (HTTPS)
+    sameSite: 'Lax',
+    maxAge: 24 * 60 * 60 * 1000 // 1 day
+  });
+
   res.json({
     message: 'Login successful',
     user: {
@@ -42,6 +55,7 @@ const loginUser = async (req, res) => {
       email: user.email
     }
   });
+  
 };
 
 module.exports = { registerUser, loginUser };
