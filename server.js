@@ -1,6 +1,8 @@
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const userRoutes = require('./routes/userRoutes');
 
@@ -16,10 +18,24 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Mount routes
 app.use('/api/users', userRoutes);
+app.use(express.static(path.join(__dirname, 'client')));
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'login.html'));
+});
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'register.html'));
+});
+
+
+app.get('/test', (req, res) => {
   res.send('API is running...');
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

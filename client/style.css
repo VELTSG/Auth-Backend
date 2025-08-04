@@ -1,0 +1,100 @@
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(31, 38, 135, 0.08);
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar a {
+  color: #2d3a4b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.navbar a:hover {
+  color: #66a6ff;
+}
+
+.main-content {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  text-align: center;
+  min-width: 320px;
+  max-width: 350px;
+  margin: 3rem auto 0 auto;
+}
+
+h1, h2 {
+  color: #2d3a4b;
+  margin-bottom: 1.2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+input {
+  padding: 0.7rem;
+  border: 1px solid #b0bec5;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+input:focus {
+  border: 1.5px solid #66a6ff;
+}
+
+button {
+  padding: 0.7rem;
+  background: #66a6ff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #89f7fe;
+  color: #2d3a4b;
+}
+
+a {
+  color: #66a6ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #2d3a4b;
+}
+
+#loginMessage, #registerMessage {
+  margin-top: 1rem;
+  color: #e53935;
+  min-height: 1.2em;
+}
+
+.credit {
+  margin-top: 2rem;
+  color: #b0bec5;
+  font-size: 0.95rem;
+}
