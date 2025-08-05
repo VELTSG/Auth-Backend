@@ -9,6 +9,9 @@ router.post('/login', loginUser);
 router.get('/profile', verifyToken, (req, res) => {
   res.json({ message: `Welcome user ${req.user.id}` });
 });
-
+router.get('/me', authMiddleware, async (req,res) => {
+  const user = await User.findById(req.user.id).select('-password');
+  res.json(user);
+});
 
 module.exports = router;
