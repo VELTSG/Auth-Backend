@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-
+const rateLimit = require('express-rate-limit');
 
 
  
@@ -24,9 +24,16 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
+// Rate limiting middleware
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 mins
+  max: 100, // limit each IP to 100 requests per window
+});
+
 // Mount routes
 app.use('/api/users', userRoutes);
 app.use(express.static(path.join(__dirname, 'client')));
+app.use(limiter);
 
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
