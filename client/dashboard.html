@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Auth App</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard-container {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+      text-align: center;
+      min-width: 320px;
+      max-width: 400px;
+      margin: 4rem auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e3eafc;
+      margin-bottom: 1.2rem;
+      border: 3px solid #66a6ff;
+    }
+    .dashboard-username {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2d3a4b;
+      margin-bottom: 0.5rem;
+    }
+    .dashboard-date {
+      color: #4f5b62;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .logout-btn {
+      padding: 0.7rem 2.2rem;
+      background: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 0.7rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover {
+      background: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/home">Home</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  </nav>
+  <div class="dashboard-container">
+    <img src="https://ui-avatars.com/api/?name=User&background=66a6ff&color=fff&size=100" alt="Profile Picture" class="profile-pic" id="profilePic">
+    <div class="dashboard-username" id="dashboardUsername">Username</div>
+    <div class="dashboard-date" id="dashboardDate">Account created: 2025-08-05</div>
+    <button class="logout-btn" id="logoutBtn">Log Out</button>
+  </div>
+  <script>
+    // Example: Replace with real data fetching logic
+    // Simulate fetching user data from backend or localStorage
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        const res = await fetch('/api/users/me', { credentials: 'include' });
+        if (!res.ok) throw new Error('Not authenticated');
+        const user = await res.json();
+        document.getElementById('dashboardUsername').textContent = user.username || 'Username';
+        document.getElementById('dashboardDate').textContent = 'Account created: ' + (user.createdAt ? user.createdAt.split('T')[0] : '');
+        document.getElementById('profilePic').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.username || 'User')}&background=66a6ff&color=fff&size=100`;
+      } catch (err) {
+        window.location.href = '/login';
+      }
+    });
+    document.getElementById('logoutBtn').onclick = async function() {
+      await fetch('/api/users/logout', { method: 'POST', credentials: 'include' });
+      window.location.href = '/login';
+    };
+  </script>
+</body>
+</html>
